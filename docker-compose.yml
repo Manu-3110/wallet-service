@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: wallet_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: wallet_db
+      POSTGRES_USER: wallet_user
+      POSTGRES_PASSWORD: wallet_pass
+    ports:
+      - '5433:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/database/migrations/001_init_schema.sql:/docker-entrypoint-initdb.d/001_init_schema.sql
+      - ./src/database/migrations/002_indexes.sql:/docker-entrypoint-initdb.d/002_indexes.sql
+      - ./src/database/seed/seed.sql:/docker-entrypoint-initdb.d/003_seed.sql
+
+  api:
+    build: .
+    container_name: wallet_api
+    depends_on:
+      - postgres
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: wallet_db
+      DB_USER: wallet_user
+      DB_PASSWORD: wallet_pass
+    command: node dist/main.js
+
+volumes:
+  postgres_data:
