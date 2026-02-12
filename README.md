@@ -232,7 +232,7 @@ This lets you confirm seed rows exist and ledger entries are being written.
 
 ---
 
-# 📊 Data Models (Entity Schema)
+# Data Models (Entity Schema)
 
 The system architecture relies on four core entities to ensure **ACID correctness**, **auditability**, and **concurrency safety**.  
 Below is a structured summary of the critical fields for each model.
@@ -241,7 +241,7 @@ These models map directly to the database tables created by the migration script
 
 ---
 
-## 1️⃣ User Entity (`users`)
+## 1) User Entity (`users`)
 
 Represents the platform account holder.
 
@@ -259,7 +259,7 @@ Represents the platform account holder.
 
 ---
 
-## 2️⃣ Asset Entity (`asset_types`)
+## 2) Asset Entity (`asset_types`)
 
 Defines the virtual currencies supported by the platform (e.g., Gold Coins, Diamonds).
 
@@ -279,7 +279,7 @@ Defines the virtual currencies supported by the platform (e.g., Gold Coins, Diam
 
 ---
 
-## 3️⃣ Wallet Entity (`wallets`)
+## 3️) Wallet Entity (`wallets`)
 
 The bridge between **Users** and **Assets**.  
 This is the table where **row-level locks** are applied during transactions.
@@ -307,7 +307,7 @@ This is the table where **row-level locks** are applied during transactions.
 
 ---
 
-## 4️⃣ Ledger Entry Entity (`ledger_entries`)
+## 4️) Ledger Entry Entity (`ledger_entries`)
 
 The **immutable audit source of truth**.  
 Every transaction generates a **double-entry pair** (user + system).
