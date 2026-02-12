@@ -349,12 +349,12 @@ Link: http://localhost:3000/api/docs
 - POST /users — create user
 - GET /users?userId= or ?email= — fetch user
 
-## Wallet Read APIs
+## Wallet Balance(read) APIs
 
 - GET /wallets/:userId/balance
 - GET /wallets/:userId/ledger
 
-## Transactions
+## Wallet Transactions(write) APIs
 
 - POST /wallets/transactions/topup
 - POST /wallets/transactions/bonus
