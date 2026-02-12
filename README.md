@@ -525,7 +525,7 @@ This guarantees **exactly-once effect**.
 
 ---
 
-# Ledger-Based Double Entry (Brownie Point)
+# Ledger-Based Double Entry
 
 Each transaction writes two rows:
 
